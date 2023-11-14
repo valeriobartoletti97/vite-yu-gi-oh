@@ -28,6 +28,10 @@
         }
      }
      .card-description{
-            background-color:orange
+            background-color:orange;
+            h5{
+                color:white
+            }
+            height: 120px
         }
 </style>
