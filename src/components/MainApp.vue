@@ -1,10 +1,11 @@
 <template>
     <div class="container py-4" v-if="store.cardArray.length >= 20">
         <div class="row justify-content-between card-wrapper p-5">
+            <SelectArchetype class="mb-3"/>
             <div class="card-founded">
                 <span>Found {{ store.cardArray.length }} cards</span>
             </div>
-            <div class="col-sm-6 col-md-3 text-center py-3" v-for="(card,index) in store.cardArray" :key="index">
+            <div class="col-sm-6 col-md-3 col-12 text-center py-3" v-for="(card,index) in store.cardArray" :key="index">
                 <CardComponent :img="card.card_images[0].image_url" :title="card.name" :type="card.type" />
             </div>
         </div>
@@ -17,11 +18,13 @@
 <script>
 import { store } from '../data/store';
 import CardComponent from './CardComponent.vue';
+import SelectArchetype from './SelectArchetype.vue';
     export default {
         name:'MainApp',
         components:{
-    CardComponent,
-},
+        CardComponent,
+        SelectArchetype
+        },
         data(){
             return{
                 store
