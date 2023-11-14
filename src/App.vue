@@ -10,10 +10,13 @@ import axios from 'axios';
 import {store} from './data/store';
 import HeaderApp from './components/HeaderApp.vue';
 import MainApp from './components/MainApp.vue';
+import CardComponent from './components/CardComponent.vue';
+
   export default {
     components:{
       HeaderApp,
-      MainApp
+      MainApp,
+      CardComponent,
     },
     data(){
       return{
