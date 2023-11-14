@@ -1,6 +1,7 @@
 <template>
-  <HeaderApp />
+  <HeaderApp/>
   <main>
+    <SelectArchetype class="mb-3" @filter="setParams"/>
     <MainApp />
   </main>
 </template>
@@ -11,26 +12,49 @@ import {store} from './data/store';
 import HeaderApp from './components/HeaderApp.vue';
 import MainApp from './components/MainApp.vue';
 import CardComponent from './components/CardComponent.vue';
+import SelectArchetype from './components/SelectArchetype.vue';
 
   export default {
     components:{
-      HeaderApp,
-      MainApp,
-      CardComponent,
-    },
+    HeaderApp,
+    MainApp,
+    CardComponent,
+    SelectArchetype
+},
     data(){
       return{
-        store
+        store,
+        params: null
       }
     },
     methods:{
+      setParams(search){
+         if(search){
+          this.params = {
+            archetype: search,
+            num: 20,
+            offset: 0
+          }
+         }else{
+            this.params = null
+         }
+         console.log('ciao')
+         this.filterCards();
+      },
       getCards(){
         const pag1Url = store.apiUrl + store.page1
         axios.get(pag1Url).then((response) =>{
           store.cardArray = response.data.data;
           console.log(store.cardArray)
         })
-      }
+      },
+      filterCards(){
+        const newArchetype = store.apiUrl + "?";
+        axios.get(newArchetype, {params : this.params}).then((response) =>{
+          store.cardArray = response.data.data
+          /* console.log(response.data.data) */
+        })
+      } 
       
     },
     created(){

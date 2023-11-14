@@ -1,7 +1,6 @@
 <template>
     <div class="container py-4" v-if="store.cardArray.length >= 20">
         <div class="row justify-content-between card-wrapper p-5">
-            <SelectArchetype class="mb-3"/>
             <div class="card-founded">
                 <span>Found {{ store.cardArray.length }} cards</span>
             </div>
@@ -18,18 +17,16 @@
 <script>
 import { store } from '../data/store';
 import CardComponent from './CardComponent.vue';
-import SelectArchetype from './SelectArchetype.vue';
     export default {
         name:'MainApp',
         components:{
         CardComponent,
-        SelectArchetype
         },
         data(){
             return{
                 store
             }
-        }
+        },
     }
 </script>
 

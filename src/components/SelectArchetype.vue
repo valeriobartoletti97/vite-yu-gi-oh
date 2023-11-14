@@ -1,25 +1,32 @@
 <template>
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Choose Archetype</option>
-      <option value="-eyes dragon">-Eyes Dragon</option>
-      <option value="advanced-crystal-beast">Advanced Crystal Beast</option>
-      <option value="amazoness">Amazoness</option>
-      <option value="ancient-gear">Ancient Gear</option>
-      <option value="blue-eyes">Blue-Eyes</option>
+    <select class="form-select" id="select" v-model="filteredArchetype" @change="sendData">
+      <option value="Blackwing">Blackwing</option>
+      <option value="Cyber Dragon">Cyber Dragon</option>
+      <option selected value="Amazoness">Amazoness</option>
+      <option value="Ancient Gear">Ancient Gear</option>
+      <option value="Blue-Eyes">Blue-Eyes</option>
     </select>
 </template>
 
 <script>
     export default {
         name: 'SelectArchetype',
-
+        data(){
+            return{
+                filteredArchetype :'',
+            }
+        },
+        methods:{
+            sendData(){
+                this.$emit('filter', this.filteredArchetype)
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     select{
-        width: calc(100% - 20px);
-        padding: 20px 10 !important;
-        margin:auto
+        width: 30%;
+        margin: 0 auto;
     }
 </style>
