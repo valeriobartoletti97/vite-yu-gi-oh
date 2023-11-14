@@ -1,14 +1,19 @@
 <template>
   <HeaderApp />
+  <main>
+    <MainApp />
+  </main>
 </template>
 
 <script>
 import axios from 'axios';
 import {store} from './data/store';
 import HeaderApp from './components/HeaderApp.vue';
+import MainApp from './components/MainApp.vue';
   export default {
     components:{
-      HeaderApp
+      HeaderApp,
+      MainApp
     },
     data(){
       return{
@@ -32,5 +37,7 @@ import HeaderApp from './components/HeaderApp.vue';
 </script>
 
 <style lang="scss" scoped>
-
+  main{
+    background-color: orange;
+  }
 </style>
