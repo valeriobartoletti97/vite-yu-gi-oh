@@ -1,4 +1,5 @@
 <template>
+    <LoaderComponent v-if="store.loading"/>
     <div class="container py-4" v-if="store.cardArray.length >= 20">
         <div class="row justify-content-between card-wrapper p-5">
             <div class="card-founded">
@@ -9,19 +10,21 @@
             </div>
         </div>
     </div>
-    <div class="loading text-uppercase d-flex align-items-center justify-content-center" v-else>
-        <h3>Loading cards</h3>
+    <div class="alert alert-danger text-uppercase text-center" v-if="store.error">
+        {{ store.error }}
     </div>
 </template>
 
 <script>
 import { store } from '../data/store';
 import CardComponent from './CardComponent.vue';
+import LoaderComponent from './LoaderComponent.vue';
     export default {
         name:'MainApp',
         components:{
-        CardComponent,
-        },
+    CardComponent,
+    LoaderComponent
+},
         data(){
             return{
                 store
@@ -54,5 +57,11 @@ import CardComponent from './CardComponent.vue';
      }
      .col-3.text-center{
         padding: 20px 10 !important
+     }
+     div.alert-danger{
+        width:50%;
+        margin: 0 auto;
+        background-color: rgb(238, 53, 53);
+        font-weight: bolder
      }
 </style>

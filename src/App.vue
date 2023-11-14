@@ -19,7 +19,7 @@ import SelectArchetype from './components/SelectArchetype.vue';
     HeaderApp,
     MainApp,
     CardComponent,
-    SelectArchetype
+    SelectArchetype, 
 },
     data(){
       return{
@@ -38,7 +38,6 @@ import SelectArchetype from './components/SelectArchetype.vue';
          }else{
             this.params = null
          }
-         console.log('ciao')
          this.filterCards();
       },
       getCards(){
@@ -46,6 +45,10 @@ import SelectArchetype from './components/SelectArchetype.vue';
         axios.get(pag1Url).then((response) =>{
           store.cardArray = response.data.data;
           console.log(store.cardArray)
+        }).catch((error)=>{
+          this.store.error = error.message
+        }).finally(()=>{
+          store.loading = false
         })
       },
       filterCards(){
@@ -53,6 +56,8 @@ import SelectArchetype from './components/SelectArchetype.vue';
         axios.get(newArchetype, {params : this.params}).then((response) =>{
           store.cardArray = response.data.data
           /* console.log(response.data.data) */
+        }).catch((error)=>{
+          this.store.error = error.message
         })
       } 
       
